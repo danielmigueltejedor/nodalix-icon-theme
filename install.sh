@@ -2,6 +2,13 @@
 
 set -eo pipefail
 
+# New installs use Nodalix's Adwaita/Colloid hybrid by default.
+# Explicit legacy Colloid options remain available for pinned older packages.
+if (( $# == 0 )) || [[ "${1:-}" == "--nodalix" ]]; then
+  if [[ "${1:-}" == "--nodalix" ]]; then shift; fi
+  exec "$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)/install-nodalix.sh" "$@"
+fi
+
 ROOT_UID=0
 DEST_DIR=
 

@@ -1,7 +1,9 @@
 # Nodalix icon theme
 
-Nodalix maintains this fork of Colloid as the source of its application icons
-and Capitaine-based cursor theme. Upstream Colloid credits and licensing are
+Nodalix maintains this repository as the source of its hybrid desktop artwork:
+**Adwaita** for Shell, system controls, settings and symbolic icons;
+**Colloid** plus Nodalix artwork for application icons; and **Capitaine** for
+its separate cursor theme. Upstream Colloid credits and licensing are
 preserved below.
 
 Custom application artwork lives in `src/apps/scalable`. Application IDs and
@@ -17,6 +19,19 @@ their respective projects.
 The Nodalix cursor sources, build tool and LGPL license live in
 `cursors/nodalix`. Nodalix OS pins a commit of this repository for both the icon
 and cursor packages so a release uses a reproducible set of artwork.
+
+## Default Nodalix icon theme
+
+Run `./install.sh` (or `./install-nodalix.sh`) to build `Nodalix-Icons`.
+Only `apps/scalable` is installed from this repository, with
+`Inherits=Adwaita,hicolor`, so Colloid never overrides Wi-Fi, Bluetooth,
+volume, Settings, or other Shell/control symbols. Select it with
+`gsettings set org.gnome.desktop.interface icon-theme Nodalix-Icons`.
+The independent Capitaine cursor is selected using `cursor-theme=Nodalix`.
+
+The legacy Colloid installer is retained for backwards compatibility and
+requires explicit flags (for example, `./install.sh -n Colloid -t teal -b`).
+New Nodalix desktop packages should install the hybrid theme instead.
 
 ## Colloid icon theme
 
