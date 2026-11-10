@@ -49,6 +49,9 @@ if [[ -L "$DEST/$NAME" || ( -e "$DEST/$NAME" && ! -d "$DEST/$NAME" ) ]]; then
 fi
 
 STAGING="$(mktemp -d "$DEST/.${NAME}.tmp.XXXXXXXX")"
+# mktemp makes the directory 0700; an installed theme must be readable by every
+# user, or GTK silently falls back to Adwaita for every application icon.
+chmod 0755 -- "$STAGING"
 BACKUP=
 cleanup() {
   if [[ -n "${STAGING:-}" && -d "$STAGING" ]]; then rm -rf -- "$STAGING"; fi
