@@ -53,3 +53,11 @@ Para mantener compatibilidad con paquetes históricos, `./install.sh -n Colloid 
 | Audacity 4 portable | `org.audacityteam.Audacity4portable.svg` |
 
 Craft Launcher, SolidCraft y Audacity 4 portable usan el fondo de baldosa de Colloid. El resto de Craft entra con el margen del tema, sobre el lienzo de 256.
+
+## Aplicaciones de Nodalix
+
+| Aplicación | Archivo | Alias |
+| --- | --- | --- |
+| Nodalix Store (Tienda) | `os.nodalix.Store.svg` | `nodalix-store`, `os.nodalix.Store.Devel` |
+
+El icono de Nodalix Store es propio: una bolsa blanca con una «N» sobre una baldosa turquesa-azul del mismo tamaño y radio que el resto de iconos de aplicación. Sustituye al icono de Bazaar (`io.github.kolunmi.Bazaar.svg`), que se mantiene solo para el Bazaar original y ya no se usa para la tienda de Nodalix.
