@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64">
+  <defs>
+    <linearGradient id="nodalix-store-bg" x1="0" x2="0" y1="4" y2="60" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#5ed3c3"/>
+      <stop offset="1" stop-color="#2b82d6"/>
+    </linearGradient>
+    <linearGradient id="nodalix-store-shine" x1="0" x2="0" y1="4" y2="32" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#fff" stop-opacity=".28"/>
+      <stop offset="1" stop-color="#fff" stop-opacity="0"/>
+    </linearGradient>
+    <clipPath id="nodalix-store-clip">
+      <rect width="56" height="56" x="4" y="4" rx="13" ry="13"/>
+    </clipPath>
+  </defs>
+  <rect width="56" height="56" x="4" y="5" rx="13" ry="13" fill="#000" opacity=".16"/>
+  <rect width="56" height="56" x="4" y="4" rx="13" ry="13" fill="url(#nodalix-store-bg)"/>
+  <rect width="56" height="28" x="4" y="4" fill="url(#nodalix-store-shine)" clip-path="url(#nodalix-store-clip)"/>
+  <path d="M25.5 24v-1.5a6.5 6.5 0 0 1 13 0V24" fill="none" stroke="#fff" stroke-width="3.2" stroke-linecap="round"/>
+  <path d="M20 25.2h24q2 0 2 2l2 18.5q.3 4.5-4.2 4.5H20.2q-4.5 0-4.2-4.5l2-18.5q0-2 2-2z" fill="#000" opacity=".14"/>
+  <path d="M20 24h24q2 0 2 2l2 18.5q.3 4.5-4.2 4.5H20.2q-4.5 0-4.2-4.5l2-18.5q0-2 2-2z" fill="#fff"/>
+  <path d="M26.5 44V31l11 13V31" fill="none" stroke="url(#nodalix-store-bg)" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
