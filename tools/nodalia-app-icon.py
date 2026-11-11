@@ -19,6 +19,7 @@ import base64
 import io
 import os
 import re
+import secrets
 import sys
 from pathlib import Path
 
@@ -109,13 +110,15 @@ def main():
     content = svg(artwork(args.source), args.comment)
     # A plain exclusive open, not mkstemp: the icon gets the usual umask mode
     # (mkstemp's 0600 would hide it from other users) with no chmod needed.
-    tmp = ICONS / f'.{args.name}.{os.getpid()}.svg.tmp'
+    # A random name, so a file left by a killed run never blocks this one.
+    tmp = ICONS / f'.{args.name}.{secrets.token_hex(8)}.svg.tmp'
+    stream = open(tmp, 'x', encoding='utf-8')
     try:
-        with open(tmp, 'x', encoding='utf-8') as stream:
+        with stream:
             stream.write(content)
         os.replace(tmp, ICONS / f'{args.name}.svg')
     except BaseException:
-        tmp.unlink(missing_ok=True)
+        tmp.unlink(missing_ok=True)  # ours: the open above created it
         raise
 
 
