@@ -33,6 +33,10 @@ ICONS = Path(__file__).resolve().parent.parent / 'src' / 'apps' / 'scalable'
 ICON_NAME = re.compile(r'[A-Za-z0-9][A-Za-z0-9._-]*')
 ART = 2 * TILE  # sharp at 2x scaling of the largest common size
 QUALITY = 90
+# The mode open() would give a new file, so the icon is as readable as any other.
+_UMASK = os.umask(0)
+os.umask(_UMASK)
+NEW_FILE_MODE = 0o666 & ~_UMASK
 
 
 def artwork(path):
@@ -112,7 +116,7 @@ def main():
     try:
         with os.fdopen(fd, 'w', encoding='utf-8') as stream:
             stream.write(content)
-        os.chmod(tmp, 0o644)  # mkstemp makes it 0600; an icon is read by everyone
+        os.chmod(tmp, NEW_FILE_MODE)  # mkstemp makes it 0600; match a plain write
         os.replace(tmp, ICONS / f'{args.name}.svg')
     except BaseException:
         os.unlink(tmp)
