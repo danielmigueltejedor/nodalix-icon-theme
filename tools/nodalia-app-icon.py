@@ -19,7 +19,6 @@ import base64
 import io
 import os
 import re
-import tempfile
 import sys
 from pathlib import Path
 
@@ -33,10 +32,6 @@ ICONS = Path(__file__).resolve().parent.parent / 'src' / 'apps' / 'scalable'
 ICON_NAME = re.compile(r'[A-Za-z0-9][A-Za-z0-9._-]*')
 ART = 2 * TILE  # sharp at 2x scaling of the largest common size
 QUALITY = 90
-# The mode open() would give a new file, so the icon is as readable as any other.
-_UMASK = os.umask(0)
-os.umask(_UMASK)
-NEW_FILE_MODE = 0o666 & ~_UMASK
 
 
 def artwork(path):
@@ -112,14 +107,15 @@ def main():
     # Built before anything is opened, and swapped in whole, so a bad SOURCE
     # leaves the existing icon untouched rather than truncated.
     content = svg(artwork(args.source), args.comment)
-    fd, tmp = tempfile.mkstemp(dir=ICONS, suffix='.svg.tmp')
+    # A plain exclusive open, not mkstemp: the icon gets the usual umask mode
+    # (mkstemp's 0600 would hide it from other users) with no chmod needed.
+    tmp = ICONS / f'.{args.name}.{os.getpid()}.svg.tmp'
     try:
-        with os.fdopen(fd, 'w', encoding='utf-8') as stream:
+        with open(tmp, 'x', encoding='utf-8') as stream:
             stream.write(content)
-        os.chmod(tmp, NEW_FILE_MODE)  # mkstemp makes it 0600; match a plain write
         os.replace(tmp, ICONS / f'{args.name}.svg')
     except BaseException:
-        os.unlink(tmp)
+        tmp.unlink(missing_ok=True)
         raise
 
 
