@@ -68,11 +68,11 @@ Para regenerar uno cuando cambie el retrato de la app:
 
 ```sh
 tools/nodalia-app-icon.py ../vinilo/data/icons/source/dev.danielmiguelt.Vinilo.png \
-  src/apps/scalable/dev.danielmiguelt.Vinilo.svg \
+  dev.danielmiguelt.Vinilo \
   --comment "Vinilo app icon: portrait of Ludwig van Beethoven (Nodalia icon family), fitted to the Colloid tile."
 ```
 
-Acepta el retrato a sangre (el `*-1024.png` de la app) o una baldosa con su propio margen, que recorta antes. Solo necesita Pillow.
+El segundo argumento es el `Icon=` del `.desktop`; escribe `src/apps/scalable/<nombre>.svg`. Acepta el retrato a sangre (el `*-1024.png` de la app) o una baldosa con su propio margen, que recorta antes. Solo necesita Pillow.
 
 ## Aplicaciones de Nodalix
 

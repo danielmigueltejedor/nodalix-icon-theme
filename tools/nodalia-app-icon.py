@@ -6,7 +6,10 @@ Colloid draws every application tile at 224 px inside a 256 px canvas (a
 Those numbers were measured from Colloid's own renders, so a Nodalia icon
 made here sits in the app grid exactly like the icons around it.
 
-Usage: nodalia-app-icon.py SOURCE OUTPUT.svg [--comment TEXT]
+Usage: nodalia-app-icon.py SOURCE ICON-NAME [--comment TEXT]
+
+Writes src/apps/scalable/ICON-NAME.svg, where ICON-NAME is the Icon= of
+the app's .desktop file.
 
 SOURCE is the app's artwork: a full-bleed square, or a tile with its own
 margin and shadow (that tile is cropped out first). Needs Pillow.
@@ -14,13 +17,18 @@ margin and shadow (that tile is cropped out first). Needs Pillow.
 import argparse
 import base64
 import io
+import re
 import sys
+from pathlib import Path
 
 from PIL import Image, ImageDraw, ImageFilter
 
 CANVAS, MARGIN, RADIUS = 256, 16, 51.5
 SHADOW_OFFSET, SHADOW_BLUR, SHADOW_OPACITY = 5, 3.5, 0.144
 TILE = CANVAS - 2 * MARGIN
+ICONS = Path(__file__).resolve().parent.parent / 'src' / 'apps' / 'scalable'
+# GTK's icon cache rejects other characters, so the name is checked here.
+ICON_NAME = re.compile(r'[A-Za-z0-9][A-Za-z0-9._-]*')
 ART = 2 * TILE  # sharp at 2x scaling of the largest common size
 QUALITY = 90
 
@@ -88,12 +96,14 @@ def svg(art, comment):
 def main():
     parser = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     parser.add_argument('source')
-    parser.add_argument('output')
+    parser.add_argument('name', help='the Icon= of the app .desktop file')
     parser.add_argument('--comment', default='')
     args = parser.parse_args()
     if '--' in args.comment:
         sys.exit('--comment cannot contain "--" (it ends an XML comment)')
-    with open(args.output, 'w', encoding='utf-8') as stream:
+    if not ICON_NAME.fullmatch(args.name):
+        sys.exit(f'{args.name!r} is not an icon name (letters, digits, ".", "_", "-")')
+    with open(ICONS / f'{args.name}.svg', 'w', encoding='utf-8') as stream:
         stream.write(svg(artwork(args.source), args.comment))
 
 
