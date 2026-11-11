@@ -49,9 +49,6 @@ if [[ -L "$DEST/$NAME" || ( -e "$DEST/$NAME" && ! -d "$DEST/$NAME" ) ]]; then
 fi
 
 STAGING="$(mktemp -d "$DEST/.${NAME}.tmp.XXXXXXXX")"
-# mktemp makes the directory 0700; an installed theme must be readable by every
-# user, or GTK silently falls back to Adwaita for every application icon.
-chmod 0755 -- "$STAGING"
 BACKUP=
 cleanup() {
   if [[ -n "${STAGING:-}" && -d "$STAGING" ]]; then rm -rf -- "$STAGING"; fi
@@ -87,6 +84,14 @@ THEME
 if command -v gtk-update-icon-cache >/dev/null 2>&1; then
   gtk-update-icon-cache -f -t "$STAGING"
 fi
+
+# mktemp makes the staging directory 0700, and a strict umask does the same to
+# everything created inside it. An installed theme must be readable by every
+# user, or GTK silently falls back to Adwaita for every application icon.
+chmod -R u+rwX,go+rX,go-w -- "$STAGING"
+# cp -a keeps the checkout owner's uid, so a root install would leave a system
+# theme that user could still edit.
+if [[ "$EUID" -eq 0 ]]; then chown -R 0:0 -- "$STAGING"; fi
 
 if [[ -d "$DEST/$NAME" ]]; then
   BACKUP="$(mktemp -d "$DEST/.${NAME}.bak.XXXXXXXX")"
