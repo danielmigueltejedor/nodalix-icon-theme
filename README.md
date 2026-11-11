@@ -10,8 +10,10 @@ Custom application artwork lives in `src/apps/scalable`. Application IDs and
 short-name aliases live in `links/apps/scalable`. Add a new SVG using its desktop
 application ID and rerun the installer to include it in all theme variants.
 
-The current Craft, ArtCraft Launcher, SolidCraft, Audacity 4 Portable, LACT and
-The Witcher 3 artwork is included. `nodalix/legacy-icons.json` records hashes of
+The Nodalia apps (Brújula, Celdas, Forja, Lámina, Letra, Lienzo, Luz, Papel,
+Pliego, Pluma, Pulso, Toma, Torno, Vinilo and Vortia) are included, fitted to
+Colloid's tile by `tools/nodalia-app-icon.py` (see `NODALIX.md`), as is the
+ArtCraft Launcher, Audacity 4 Portable, LACT and The Witcher 3 artwork. `nodalix/legacy-icons.json` records hashes of
 the previous generated icons so Nodalix OS can adopt those copies while
 preserving independently edited icons. Application names and logos belong to
 their respective projects.
