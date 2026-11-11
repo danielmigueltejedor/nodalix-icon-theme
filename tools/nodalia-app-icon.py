@@ -17,7 +17,9 @@ margin and shadow (that tile is cropped out first). Needs Pillow.
 import argparse
 import base64
 import io
+import os
 import re
+import tempfile
 import sys
 from pathlib import Path
 
@@ -103,8 +105,18 @@ def main():
         sys.exit('--comment cannot contain "--" (it ends an XML comment)')
     if not ICON_NAME.fullmatch(args.name):
         sys.exit(f'{args.name!r} is not an icon name (letters, digits, ".", "_", "-")')
-    with open(ICONS / f'{args.name}.svg', 'w', encoding='utf-8') as stream:
-        stream.write(svg(artwork(args.source), args.comment))
+    # Built before anything is opened, and swapped in whole, so a bad SOURCE
+    # leaves the existing icon untouched rather than truncated.
+    content = svg(artwork(args.source), args.comment)
+    fd, tmp = tempfile.mkstemp(dir=ICONS, suffix='.svg.tmp')
+    try:
+        with os.fdopen(fd, 'w', encoding='utf-8') as stream:
+            stream.write(content)
+        os.chmod(tmp, 0o644)  # mkstemp makes it 0600; an icon is read by everyone
+        os.replace(tmp, ICONS / f'{args.name}.svg')
+    except BaseException:
+        os.unlink(tmp)
+        raise
 
 
 if __name__ == '__main__':
