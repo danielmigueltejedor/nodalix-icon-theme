@@ -56,23 +56,23 @@ Craft Launcher, SolidCraft y Audacity 4 portable usan el fondo de baldosa de Col
 
 ## Aplicaciones Nodalia
 
-Cada app Nodalia lleva el retrato de una figura histórica en blanco y negro sobre su color. Aquí se ajustan a la retícula de Colloid: baldosa de 224 px dentro del lienzo de 256 (16 px de margen), radio de 51,5 px y la misma sombra suave, medidas sobre los propios iconos de Colloid. Son apps propias, separadas de las Craft: los iconos `ai.storyteller.*` e `io.tangencylabs.solidcraft` siguen siendo los de las Craft, y el de cada app Nodalia va con su propio nombre.
+Cada app Nodalia lleva el retrato de una figura histórica en blanco y negro sobre su color. Aquí se ajustan a la retícula de Colloid: baldosa de 224 px dentro del lienzo de 256 (16 px de margen), radio de 51,5 px y la misma sombra suave, medidas sobre los propios iconos de Colloid. Son apps propias, separadas de las Craft: los iconos `ai.storyteller.*` e `io.tangencylabs.solidcraft` siguen siendo los de las Craft, y el de cada app Nodalia va con su propio nombre, `dev.danielmiguelt.<App>`, que es el `Icon=` de su `.desktop`. El ID de la app sigue siendo el Craft, salvo en Vinilo, Vortia y Brújula, así que en Flatpak, que solo exporta iconos con el nombre del ID, se ve el icono Craft.
 
 | Aplicación | Archivo | Alias |
 | --- | --- | --- |
 | Brújula | `org.gnome.Epiphany.svg` | `brujula` |
-| Celdas | `celdas.svg` | |
-| Forja | `forja.svg` | |
-| Lámina | `lamina.svg` | |
-| Letra | `letra.svg` | |
-| Lienzo | `lienzo.svg` | |
-| Luz | `luz.svg` | |
-| Papel | `papel.svg` | |
-| Pliego | `pliego.svg` | |
-| Pluma | `pluma.svg` | |
-| Pulso | `pulso.svg` | |
-| Toma | `toma.svg` | |
-| Torno | `torno.svg` | |
+| Celdas | `dev.danielmiguelt.Celdas.svg` | `celdas` |
+| Forja | `dev.danielmiguelt.Forja.svg` | `forja` |
+| Lámina | `dev.danielmiguelt.Lamina.svg` | `lamina` |
+| Letra | `dev.danielmiguelt.Letra.svg` | `letra` |
+| Lienzo | `dev.danielmiguelt.Lienzo.svg` | `lienzo` |
+| Luz | `dev.danielmiguelt.Luz.svg` | `luz` |
+| Papel | `dev.danielmiguelt.Papel.svg` | `papel` |
+| Pliego | `dev.danielmiguelt.Pliego.svg` | `pliego` |
+| Pluma | `dev.danielmiguelt.Pluma.svg` | `pluma` |
+| Pulso | `dev.danielmiguelt.Pulso.svg` | `pulso` |
+| Toma | `dev.danielmiguelt.Toma.svg` | `toma` |
+| Torno | `dev.danielmiguelt.Torno.svg` | `torno` |
 | Vinilo | `dev.danielmiguelt.Vinilo.svg` | `vinilo` |
 | Vortia | `vortia.svg` | |
 
