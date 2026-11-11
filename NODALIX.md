@@ -33,34 +33,46 @@ Para mantener compatibilidad con paquetes históricos, `./install.sh -n Colloid 
 | Aplicación | Archivo |
 | --- | --- |
 | Craft Launcher | `ai.storyteller.artcraft-launcher.svg` |
+| CADCraft | `ai.storyteller.cadcraft.svg` |
 | Craft Anything | `ai.storyteller.craft-anything.svg` |
+| DeckCraft | `ai.storyteller.deckcraft.svg` |
+| DesignCraft | `ai.storyteller.designcraft.svg` |
+| EffectCraft | `ai.storyteller.effectcraft.svg` |
 | FigCraft | `ai.storyteller.figcraft.svg` |
+| FilmCraft | `ai.storyteller.filmcraft.svg` |
+| GridCraft | `ai.storyteller.gridcraft.svg` |
+| LightCraft | `ai.storyteller.lightcraft.svg` |
 | MaterialCraft | `ai.storyteller.materialcraft.svg` |
+| PDFCraft | `ai.storyteller.pdfcraft.svg` |
+| PhotoCraft | `ai.storyteller.photocraft.svg` |
 | SoundCraft | `ai.storyteller.soundcraft.svg` |
 | TextureCraft | `ai.storyteller.texturecraft.svg` |
+| VectorCraft | `ai.storyteller.vectorcraft.svg` |
+| WordCraft | `ai.storyteller.wordcraft.svg` |
+| SolidCraft | `io.tangencylabs.solidcraft.svg` |
 | Audacity 4 portable | `org.audacityteam.Audacity4portable.svg` |
 
-Craft Launcher y Audacity 4 portable usan el fondo de baldosa de Colloid. El resto entra con el margen del tema, sobre el lienzo de 256. Las apps Nodalia tienen su propia tabla abajo.
+Craft Launcher, SolidCraft y Audacity 4 portable usan el fondo de baldosa de Colloid. El resto de Craft entra con el margen del tema, sobre el lienzo de 256. Las apps Nodalia tienen su propia tabla abajo.
 
 ## Aplicaciones Nodalia
 
-Cada app Nodalia lleva el retrato de una figura histórica en blanco y negro sobre su color. Aquí se ajustan a la retícula de Colloid: baldosa de 224 px dentro del lienzo de 256 (16 px de margen), radio de 51,5 px y la misma sombra suave, medidas sobre los propios iconos de Colloid. El archivo usa el `Icon=` del `.desktop` de cada app y hay un alias con su nombre corto.
+Cada app Nodalia lleva el retrato de una figura histórica en blanco y negro sobre su color. Aquí se ajustan a la retícula de Colloid: baldosa de 224 px dentro del lienzo de 256 (16 px de margen), radio de 51,5 px y la misma sombra suave, medidas sobre los propios iconos de Colloid. Son apps propias, separadas de las Craft: los iconos `ai.storyteller.*` e `io.tangencylabs.solidcraft` siguen siendo los de las Craft, y el de cada app Nodalia va con su propio nombre.
 
 | Aplicación | Archivo | Alias |
 | --- | --- | --- |
 | Brújula | `org.gnome.Epiphany.svg` | `brujula` |
-| Celdas | `ai.storyteller.gridcraft.svg` | `celdas` |
-| Forja | `ai.storyteller.cadcraft.svg` | `forja` |
-| Lámina | `ai.storyteller.deckcraft.svg` | `lamina` |
-| Letra | `ai.storyteller.wordcraft.svg` | `letra` |
-| Lienzo | `ai.storyteller.photocraft.svg` | `lienzo` |
-| Luz | `ai.storyteller.lightcraft.svg` | `luz` |
-| Papel | `ai.storyteller.pdfcraft.svg` | `papel` |
-| Pliego | `ai.storyteller.designcraft.svg` | `pliego` |
-| Pluma | `ai.storyteller.vectorcraft.svg` | `pluma` |
-| Pulso | `ai.storyteller.effectcraft.svg` | `pulso` |
-| Toma | `ai.storyteller.filmcraft.svg` | `toma` |
-| Torno | `io.tangencylabs.solidcraft.svg` | `torno` |
+| Celdas | `celdas.svg` | |
+| Forja | `forja.svg` | |
+| Lámina | `lamina.svg` | |
+| Letra | `letra.svg` | |
+| Lienzo | `lienzo.svg` | |
+| Luz | `luz.svg` | |
+| Papel | `papel.svg` | |
+| Pliego | `pliego.svg` | |
+| Pluma | `pluma.svg` | |
+| Pulso | `pulso.svg` | |
+| Toma | `toma.svg` | |
+| Torno | `torno.svg` | |
 | Vinilo | `dev.danielmiguelt.Vinilo.svg` | `vinilo` |
 | Vortia | `vortia.svg` | |
 
