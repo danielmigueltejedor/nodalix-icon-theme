@@ -19,7 +19,7 @@ import base64
 import io
 import os
 import re
-import tempfile
+import secrets
 import sys
 from pathlib import Path
 
@@ -108,14 +108,17 @@ def main():
     # Built before anything is opened, and swapped in whole, so a bad SOURCE
     # leaves the existing icon untouched rather than truncated.
     content = svg(artwork(args.source), args.comment)
-    fd, tmp = tempfile.mkstemp(dir=ICONS, suffix='.svg.tmp')
+    # A plain exclusive open, not mkstemp: the icon gets the usual umask mode
+    # (mkstemp's 0600 would hide it from other users) with no chmod needed.
+    # A random name, so a file left by a killed run never blocks this one.
+    tmp = ICONS / f'.{args.name}.{secrets.token_hex(8)}.svg.tmp'
+    stream = open(tmp, 'x', encoding='utf-8')
     try:
-        with os.fdopen(fd, 'w', encoding='utf-8') as stream:
+        with stream:
             stream.write(content)
-        os.chmod(tmp, 0o644)  # mkstemp makes it 0600; an icon is read by everyone
         os.replace(tmp, ICONS / f'{args.name}.svg')
     except BaseException:
-        os.unlink(tmp)
+        tmp.unlink(missing_ok=True)  # ours: the open above created it
         raise
 
 
