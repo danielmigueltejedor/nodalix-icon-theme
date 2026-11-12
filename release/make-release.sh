@@ -5,15 +5,15 @@ THEME_DIR=$(cd $(dirname $0) && pwd)
 THEME_NAME=Colloid
 _THEME_VARIANTS=('' '-Purple' '-Pink' '-Red' '-Orange' '-Yellow' '-Green' '-Grey' '-Teal')
 
-if [ ! -z "${COMPA_VARIANTS:-}" ]; then
+if [[ -n "${COMPA_VARIANTS:-}" ]]; then
   IFS=', ' read -r -a _COMPA_VARIANTS <<< "${COMPA_VARIANTS:-}"
 fi
 
-if [ ! -z "${COLOR_VARIANTS:-}" ]; then
+if [[ -n "${COLOR_VARIANTS:-}" ]]; then
   IFS=', ' read -r -a _COLOR_VARIANTS <<< "${COLOR_VARIANTS:-}"
 fi
 
-if [ ! -z "${THEME_VARIANTS:-}" ]; then
+if [[ -n "${THEME_VARIANTS:-}" ]]; then
   IFS=', ' read -r -a _THEME_VARIANTS <<< "${THEME_VARIANTS:-}"
 fi
 

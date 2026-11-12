@@ -43,7 +43,7 @@ check_dependencies() {
     fi
   done
   
-  if [ ${#missing_deps[@]} -gt 0 ]; then
+  if [[ ${#missing_deps[@]} -gt 0 ]]; then
     echo -e "${RED}Error: Required dependencies not found: ${missing_deps[*]}${NC}"
     echo -e "${YELLOW}Please install them and run this script again.${NC}"
     exit 1
@@ -81,7 +81,7 @@ get_latest_release_tag() {
       local tags_response
       tags_response=$(curl --silent "https://api.github.com/repos/$REPO/tags")
       
-      if [ "$tags_response" != "[]" ] && [ -n "$tags_response" ]; then
+      if [[ "$tags_response" != "[]" ]] && [[ -n "$tags_response" ]]; then
         TAG=$(echo "$tags_response" | grep -m1 '"name":' | sed -E 's/.*"([^"]+)".*/\1/')
       fi
       ;;
@@ -96,7 +96,7 @@ get_latest_release_tag() {
   esac
   
   # If API methods failed, try HTML scraping as last resort
-  if [ -z "$TAG" ]; then
+  if [[ -z "$TAG" ]]; then
     echo -e "${YELLOW}Trying alternative method to get latest tag...${NC}"
     TAG=$(curl --silent "https://github.com/$REPO/releases" | 
           grep -o 'href="/'$REPO'/releases/tag/[^"]*' | 
@@ -105,7 +105,7 @@ get_latest_release_tag() {
   fi
   
   # If we still don't have a tag, try direct download of main branch as last resort
-  if [ -z "$TAG" ]; then
+  if [[ -z "$TAG" ]]; then
     echo -e "${YELLOW}No release tags found. Using main branch instead.${NC}"
     TAG="main"
     # Adjust download URL in download_latest_release function
@@ -118,7 +118,7 @@ get_latest_release_tag() {
 
 # Update download_latest_release to handle main branch fallback
 download_latest_release() {
-  if [ "${USE_MAIN_BRANCH:-false}" = true ]; then
+  if [[ "${USE_MAIN_BRANCH:-false}" = true ]]; then
     DOWNLOAD_URL="https://github.com/$REPO/archive/refs/heads/main.zip"
     echo -e "${CYAN}Downloading main branch from ${DOWNLOAD_URL}...${NC}"
   else
@@ -140,7 +140,7 @@ download_latest_release() {
   fi
 
   EXTRACTED_DIR=$(unzip -Z -1 "$TEMP_DIR/latest_release.zip" | head -n 1 | cut -d '/' -f 1)
-  if [ -z "$EXTRACTED_DIR" ]; then
+  if [[ -z "$EXTRACTED_DIR" ]]; then
     echo -e "${RED}Could not determine extracted directory.${NC}"
     exit 1
   fi
@@ -166,7 +166,7 @@ remove_old_directories() {
 
 # Colorscheme
 choose_scheme() {
-  if [ -n "$SCHEME" ]; then
+  if [[ -n "$SCHEME" ]]; then
     return
   fi
   
@@ -195,7 +195,7 @@ choose_scheme() {
 
 # Folder color variant
 choose_theme() {
-  if [ -n "$THEME" ]; then
+  if [[ -n "$THEME" ]]; then
     return
   fi
   
@@ -249,7 +249,7 @@ is_gnome() {
 
 choose_notint() {
   # If notint flag is already set via command line, skip this
-  if [ -n "$NOTINT_FLAG" ]; then
+  if [[ -n "$NOTINT_FLAG" ]]; then
     return
   fi
   
@@ -314,7 +314,7 @@ parse_arguments() {
   done
   
   # Validate scheme and theme if provided
-  if [ -n "$SCHEME" ]; then
+  if [[ -n "$SCHEME" ]]; then
     case "$SCHEME" in
       default|nord|dracula|gruvbox|everforest|catppuccin|all) ;;
       *)
@@ -324,7 +324,7 @@ parse_arguments() {
     esac
   fi
   
-  if [ -n "$THEME" ]; then
+  if [[ -n "$THEME" ]]; then
     case "$THEME" in
       default|purple|pink|red|orange|yellow|green|teal|grey|all) ;;
       *)
@@ -343,14 +343,14 @@ main() {
   echo -e "${BLUE}Starting Colloid Icon Theme Installer...${NC}"
   
   # Set defaults in non-interactive mode
-  if [ "${NON_INTERACTIVE:-false}" = true ]; then
+  if [[ "${NON_INTERACTIVE:-false}" = true ]]; then
     set_defaults
   fi
   
   get_latest_release_tag
   
   # Get user choices if not in non-interactive mode
-  if [ "${NON_INTERACTIVE:-false}" != true ]; then
+  if [[ "${NON_INTERACTIVE:-false}" != true ]]; then
     choose_scheme
     choose_theme
     choose_notint
@@ -361,7 +361,7 @@ main() {
   
   # Create installation command
   INSTALL_CMD="./install.sh -s \"$SCHEME\" -t \"$THEME\""
-  if [ -n "$NOTINT_FLAG" ]; then
+  if [[ -n "$NOTINT_FLAG" ]]; then
     INSTALL_CMD="$INSTALL_CMD $NOTINT_FLAG"
   fi
   
