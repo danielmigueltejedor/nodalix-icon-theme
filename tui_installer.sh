@@ -127,7 +127,8 @@ download_latest_release() {
   fi
   
   # Use progress bar with curl
-  if ! curl -L --progress-bar -o "$TEMP_DIR/latest_release.zip" "$DOWNLOAD_URL"; then
+  if ! curl --fail --location --proto '=https' --proto-redir '=https' \
+      --progress-bar -o "$TEMP_DIR/latest_release.zip" "$DOWNLOAD_URL"; then
     echo -e "${RED}Failed to download from GitHub. Please check your internet connection.${NC}"
     exit 1
   fi
