@@ -91,5 +91,9 @@ El segundo argumento es el `Icon=` del `.desktop`; escribe `src/apps/scalable/<n
 | Aplicación | Archivo | Alias |
 | --- | --- | --- |
 | Nodalix Store (Tienda) | `os.nodalix.Store.svg` | `nodalix-store`, `os.nodalix.Store.Devel` |
+| Monitor del sistema | `os.nodalix.Monitor.svg` | — |
+| Ajustes | `os.nodalix.Settings.svg` | — |
 
 El icono de Nodalix Store es propio: una bolsa blanca con una «N» sobre una baldosa turquesa-azul del mismo tamaño y radio que el resto de iconos de aplicación. Sustituye al icono de Bazaar (`io.github.kolunmi.Bazaar.svg`), que se mantiene solo para el Bazaar original y ya no se usa para la tienda de Nodalix.
+
+Los iconos de Monitor del sistema (una gráfica con trazas de CPU y memoria sobre dos medidores) y de Ajustes (tres controles deslizantes) son originales, con la baldosa de Colloid y la paleta del icono de la Tienda. Son los que usan los `.desktop` de las apps propias de Nodalix; los iconos de GNOME System Monitor y GNOME Settings no cambian.
