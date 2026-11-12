@@ -20,10 +20,10 @@ function create {
 	OUTPUT="$BUILD"/cursors
 	ALIASES="$SRC"/cursorList
 
-	if [ ! -d "$BUILD" ]; then
+	if [[ ! -d "$BUILD" ]]; then
 		mkdir "$BUILD"
 	fi
-	if [ ! -d "$OUTPUT" ]; then
+	if [[ ! -d "$OUTPUT" ]]; then
 		mkdir "$OUTPUT"
 	fi
 
@@ -45,7 +45,7 @@ function create {
 		FROM="${ALIAS#* }"
 		TO="${ALIAS% *}"
 
-		if [ -e $TO ]; then
+		if [[ -e $TO ]]; then
 			continue
 		fi
 		ln -sr "$FROM" "$TO"
@@ -56,14 +56,14 @@ function create {
 
 	echo -ne "Generating Theme Index...\\r"
 	INDEX="$OUTPUT/../index.theme"
-	if [ ! -e "$OUTPUT/../$INDEX" ]; then
+	if [[ ! -e "$OUTPUT/../$INDEX" ]]; then
 		touch "$INDEX"
 		echo -e "[Icon Theme]\nName=$THEME\n" > "$INDEX"
 	fi
 	echo -e "Generating Theme Index... DONE"
 }
 
-if [ ! "$(which xcursorgen 2> /dev/null)" ]; then
+if [[ ! "$(which xcursorgen 2> /dev/null)" ]]; then
   echo xorg-xcursorgen needs to be installed to generate the cursors.
   if has_command zypper; then
     sudo zypper in xorg-xcursorgen
@@ -78,7 +78,7 @@ if [ ! "$(which xcursorgen 2> /dev/null)" ]; then
   fi
 fi
 
-if [ ! "$(which inkscape 2> /dev/null)" ]; then
+if [[ ! "$(which inkscape 2> /dev/null)" ]]; then
   echo inkscape needs to be installed to generate the cursors.
   if has_command zypper; then
     sudo zypper in inkscape
