@@ -98,3 +98,31 @@ El segundo argumento es el `Icon=` del `.desktop`; escribe `src/apps/scalable/<n
 El icono de Nodalix Store es propio: una bolsa blanca con una «N» sobre una baldosa turquesa-azul del mismo tamaño y radio que el resto de iconos de aplicación. Sustituye al icono de Bazaar (`io.github.kolunmi.Bazaar.svg`), que se mantiene solo para el Bazaar original y ya no se usa para la tienda de Nodalix.
 
 Los iconos de Monitor del sistema (una gráfica con trazas de CPU y memoria sobre dos medidores), de Ajustes (tres controles deslizantes) y de Archivos (una carpeta con papeles) son originales, con la baldosa de Colloid y la paleta del icono de la Tienda. Son los que usan los `.desktop` de las apps propias de Nodalix; los iconos de GNOME System Monitor y GNOME Settings no cambian.
+
+## Iconos Colloid para más aplicaciones
+
+`tools/colloid-glyph-icons.py` dibuja iconos con la retícula de Colloid (baldosa de 224 px en el lienzo de 256, radio de 51,5 px, sombra suave, degradado de dos tonos y un glifo blanco) para aplicaciones que el tema aún no cubría. Los glifos son originales: sugieren lo que hace la app y no copian su logotipo, y no usan texto, así que no dependen de ninguna fuente. Sin argumentos regenera todos; con uno o varios nombres, solo esos.
+
+| Aplicación | Archivo |
+| --- | --- |
+| Contrast | `org.gnome.design.Contrast.svg` |
+| Emblem | `org.gnome.design.Emblem.svg` |
+| Palette | `org.gnome.design.Palette.svg` |
+| Helvum | `org.pipewire.Helvum.svg` |
+| Packet | `io.github.nozwock.Packet.svg` |
+| Embellish | `io.github.getnf.embellish.svg` |
+| Podman Desktop | `io.podman_desktop.PodmanDesktop.svg` |
+| DistroShelf | `com.ranfdev.DistroShelf.svg` |
+| Network Displays | `org.gnome.NetworkDisplays.svg` |
+| Ignition | `io.github.flattool.Ignition.svg` |
+| Binary | `io.github.fizzyizzy05.binary.svg` |
+| Cavalier | `org.nickvision.cavalier.svg` |
+| Hidamari | `io.github.jeffshee.Hidamari.svg` |
+| Flowtime | `io.github.diegoivanme.flowtime.svg` |
+| Save Desktop | `io.github.vikdevelop.SaveDesktop.svg` |
+| Speech Note | `net.mkiol.Speech-Note.svg` |
+| Tagger | `org.nickvision.tagger.svg` |
+| Money | `org.nickvision.money.svg` |
+| Kasts | `org.kde.kasts.svg` |
+
+Además, varias apps de Flathub traen un ID distinto del que el tema ya conocía y ahora reutilizan el icono existente mediante alias: Zen Browser (`io.github.zen_browser.zen`), LibreOffice (`org.libreoffice.LibreOffice`), Telegram Desktop (`io.github.tdesktop_x64.TelegramDesktop`), Element (`im.element.Element`), Notion (`com.notion.Notion`), Proton Mail (`me.proton.Mail`), Ryujinx (`io.github.ryubing.Ryujinx`), RawTherapee (`org.rawtherapee.RawTherapee`), VirtualBox (`org.virtualbox.VirtualBox`), VMware Workstation (`com.vmware.Workstation`) y Jellyfin Desktop (`org.jellyfin.JellyfinDesktop`).
