@@ -1,0 +1,38 @@
+name: Application icon request
+description: Request or correct an application icon in the Nodalix theme.
+labels:
+- enhancement
+body:
+- type: dropdown
+  id: icon_change
+  attributes:
+    label: Request type
+    options:
+    - New icon
+    - Update existing icon
+    - Add desktop ID alias
+  validations:
+    required: true
+- type: input
+  id: app_name
+  attributes:
+    label: Application name
+  validations:
+    required: true
+- type: input
+  id: app_url
+  attributes:
+    label: Application website or source repository
+  validations:
+    required: true
+- type: input
+  id: desktop_icon
+  attributes:
+    label: Desktop entry Icon value or application ID
+    description: Copy the Icon value from its .desktop file.
+  validations:
+    required: true
+- type: textarea
+  id: context
+  attributes:
+    label: Current appearance and references
