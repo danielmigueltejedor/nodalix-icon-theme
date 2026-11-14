@@ -1,0 +1,37 @@
+name: Validate theme
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: validate-theme-${{ github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
+jobs:
+  theme:
+    name: Theme installer smoke test
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - name: Check shell syntax
+        run: |
+          for script in ./*.sh; do
+            bash -n "$script"
+          done
+      - name: Install to a temporary directory
+        run: |
+          dest=$(mktemp -d)
+          trap 'rm -rf -- "$dest"' EXIT
+          bash ./install-nodalix.sh --dest "$dest"
+          theme="$dest/Nodalix-Icons"
+          grep -Fx 'Inherits=Adwaita,hicolor' "$theme/index.theme"
+          grep -Fx 'Directories=apps/scalable' "$theme/index.theme"
+          test -n "$(find "$theme/apps/scalable" -type f -name '*.svg' -print -quit)"
